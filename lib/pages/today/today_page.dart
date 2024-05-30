@@ -271,7 +271,7 @@ class _TodayPageState extends State<TodayPage> {
                           ),
                         } else ...{
                           Text(
-                            weekdaysToString(medicine.weekdays),
+                            weekdaysToString(medicine),
                             style: TextStyle(
                               color: disabledStateTextColor,
                               fontSize: 12,
@@ -463,7 +463,7 @@ class _TodayPageState extends State<TodayPage> {
 }
 
 // medicine.weekdays 리스트를 요일 이름으로 변환
-String weekdaysToString(List<int> weekdays) {
+String weekdaysToString(Medicine medicine) {
   final Map<int, String> weekdayNames = {
     1: '월',
     2: '화',
@@ -475,12 +475,25 @@ String weekdaysToString(List<int> weekdays) {
   };
 
   // List.from - 리스트 복사
-  List<int> sortedWeekdays = List.from(weekdays)..sort();
+  List<int> sortedWeekdays = List.from(medicine.weekdays)..sort();
 
-  // 리스트 내 각 숫자를 요일 이름으로 변환하고, 결과를 콤마로 연결
-  return weekdays.isEmpty
-      ? '매일'
-      : sortedWeekdays.map((day) => weekdayNames[day] ?? '').join(', ');
+  String weekdayToString;
+
+  if (medicine.alarms.isEmpty) {
+    weekdayToString = '';
+  } else if (medicine.weekdays.isEmpty) {
+    weekdayToString = "매일";
+  } else {
+    // 리스트 내 각 숫자를 요일 이름으로 변환하고, 결과를 콤마로 연결
+    weekdayToString =
+        sortedWeekdays.map((day) => weekdayNames[day] ?? '').join(', ');
+  }
+
+  // // 리스트 내 각 숫자를 요일 이름으로 변환하고, 결과를 콤마로 연결
+  // return medicine.weekdays.isEmpty
+  //     ? '매일'
+  //     : sortedWeekdays.map((day) => weekdayNames[day] ?? '').join(', ');
+  return weekdayToString;
 }
 
 Iterable<int> historyKeys(MedicineAlarmTime alram, Medicine medicine) {

@@ -363,9 +363,9 @@ class _AddAlarmPageState extends State<AddAlarmPage> {
 
     // 1. alarm + //
     if (!mounted) return;
-    if (widget.service.alarms.isEmpty) {
-      return showPermissionDenied(context, permission: '');
-    }
+    // if (widget.service.alarms.isEmpty) {
+    //   return showPermissionDenied(context, permission: '');
+    // }
     for (var alarm in widget.service.alarms) {
       alarmTimeRepository.addAlramTime(MedicineAlarmTime(
           alarmTIme: alarm,

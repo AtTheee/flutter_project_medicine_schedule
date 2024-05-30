@@ -38,14 +38,15 @@ void showPermissionDenied(BuildContext context, {required String permission}) {
             ],
           )),
     );
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        // duration: Duration(minutes: 1),
-        content: Center(
-          child: Text('알림을 추가해주세요.'),
-        ),
-      ),
-    );
   }
+  // else {
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     const SnackBar(
+  //       // duration: Duration(minutes: 1),
+  //       content: Center(
+  //         child: Text('알림을 추가해주세요.'),
+  //       ),
+  //     ),
+  //   );
+  // }
 }
